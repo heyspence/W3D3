@@ -117,38 +117,30 @@ class Array
         arr1 = self[0..middle_index].merge_sort 
         arr2 = self[middle_index + 1..-1].merge_sort 
         merge(arr1, arr2)
-
-        
-
     end 
+ 
 
-end 
     def merge(arr1, arr2)
-            new_array = []
-            arr1.each do |num1|
-                arr2.each do |num2|
-                    if num1 < num2
-                        new_array << num1
-                        break
-                    else 
-                        new_array << num2
-                        
-                    end 
-                end 
-            end 
-        new_array
-    end 
+        new_arr = []
+        while arr1.length > 0 && arr2.length > 0
+            if arr1[0] < arr2[0]
+                ele = arr1.shift
+                new_arr << ele
+            else
+                arr1[0] > arr2[0]
+                ele = arr2.shift
+                new_arr << ele
+            end
+        end
+
+        if arr1.length == 0
+            new_arr + arr2
+        else
+            arr2.length == 0
+            new_arr + arr1
+        end
+    end
+end
 
 
-
-
-    test_arr =  [1, 5, 8, 2, 9, 4, 8, 7, 9]
-    # p test_arr.merge
-    
-    
-    test1 = [1, 2, 3, 4]
-    test2 = [3, 4, 5, 6]
-    
-    p merge(test1, test2)
-    
-
+p [2, 3, 4, 5, 4, 2, 3, 23, 2, 1, 23, 344, 100, 1023871230487, 9213874129387429, 38924497].merge_sort
