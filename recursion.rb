@@ -1,3 +1,4 @@
+require "byebug"
 
 def range_rec(start_num, end_num)
     return [] if end_num < start_num 
@@ -118,7 +119,7 @@ class Array
         arr2 = self[middle_index + 1..-1].merge_sort 
         merge(arr1, arr2)
     end 
- 
+
 
     def merge(arr1, arr2)
         new_arr = []
@@ -143,4 +144,55 @@ class Array
 end
 
 
-p [2, 3, 4, 5, 4, 2, 3, 23, 2, 1, 23, 344, 100, 1023871230487, 9213874129387429, 38924497].merge_sort
+# p [2, 3, 4, 5, 4, 2, 3, 23, 2, 1, 23, 344, 100, 1023871230487, 9213874129387429, 38924497].merge_sort
+
+def subsets(arr)
+    return [[]] if arr.length == 0 
+
+    new_arr = []
+    
+    prev_subset = subsets(arr[0...-1])
+
+
+        prev_subset.each do |sub_arr|
+            
+            new_arr << sub_arr + [arr[-1]]
+        end 
+        prev_subset + new_arr
+
+    
+end 
+
+# p subsets([]) # => [[]]
+# p subsets([1]) # => [[], [1]]
+# p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3])
+=> [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+
+
+
+
+
+
+
+
+
+# def subsets_itr(arr)
+#     new_arr = []
+#     arr.each_with_index do |ele, i|
+#         sub_array = []
+#         arr.each_with_index do |ele2, i2|
+#             if !new_arr.include?(sub_arr)
+#                 new_arr << sub_arr
+#             end 
+#             if !sub_arr.include?(ele)
+#                 sub_arr << ele
+
+#             if !new_arr.include?(sub_arr)
+#                 new_arr << sub_arr
+#             end 
+#         end 
+
+#     end 
+
+# end 
