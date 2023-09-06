@@ -68,5 +68,18 @@ end
 # # but it does
 # p robot_parts[1] # => ["capacitors", "resistors", "inductors", "LEDs"]
     
-test_arr = [1, [2], [3, [4]]]
-p test_arr.deep_dup
+# test_arr = [1, [2], [3, [4]]]
+# p test_arr.deep_dup
+
+def fib(n) 
+    return [] if n == 0 
+    return [1] if n == 1
+    return [1, 1] if n == 2
+    last_call = fib(n - 1 )
+    last_call << last_call[-1] + last_call[-2] 
+
+end 
+
+p fib(8)
+
+
