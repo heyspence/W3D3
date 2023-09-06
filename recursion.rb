@@ -30,24 +30,43 @@ def exp2(b, n)
 
     # last_call = exp2(b, n - 1)
 
+    last_call_even = exp2(b, n / 2)
+    last_call_odd = exp2(b, (n - 1) / 2)
+
     if n.odd?
-        b * (exp(b, (n - 1) / 2) ** 2)
+        b * (last_call_odd * last_call_odd)
     else 
-        exp2(b, n / 2) ** 2
-    end 
-
-    # last_call_even = exp2(b, n / 2)
-    # last_call_odd = exp2(b, (n - 1) / 2)
-
-
+        last_call_even * last_call_even
+    end
 end 
     
-p exp2(2, 3)
+class Array
+    def deep_dup
+        array = []
+        
+        self.each do |ele|
+            if !ele.is_a?(Array)
+                array << ele
+            else
+                array << ele.deep_dup
+            end
+        end
+        array
+    end
+end
 
 
+# robot_parts = [
+#   ["nuts", "bolts", "washers"],
+#   ["capacitors", "resistors", "inductors"]
+# ]
 
+# p robot_parts_copy = robot_parts.deep_dup
 
-
-
+# # shouldn't modify robot_parts
+# p robot_parts_copy[1] << "LEDs"
+# # but it does
+# p robot_parts[1] # => ["capacitors", "resistors", "inductors", "LEDs"]
     
-
+test_arr = [1, [2], [3, [4]]]
+p test_arr.deep_dup
