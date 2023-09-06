@@ -80,8 +80,29 @@ def fib(n)
 
 end 
 
-p fib(8)
+# p fib(8)
 
+def binary_search(arr, target)
+    middle_idx = (arr.length - 1)/ 2
+    return middle_idx if target == arr[middle_idx]
+    return nil if arr.length == 0
+    
+    if target < arr[middle_idx]
+        binary_search(arr[0...middle_idx], target)
+    else
+        right_binary_search = binary_search(arr[middle_idx + 1..-1], target)
+        return nil if right_binary_search == nil
+        middle_idx + 1 + right_binary_search
+    end
+end
 
+p binary_search([1, 2, 3], 1) # => 0
+p binary_search([2, 3, 4, 5], 3) # => 1
+p binary_search([2, 4, 6, 8, 10], 6) # => 2
+p binary_search([1, 3, 4, 5, 9], 5) # => 3
+p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
+p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
+p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
 
-
+# [1, 3, 4, 5, 9], 5
+# [1, 3] 4 [5, 9]  # searching idx 2
