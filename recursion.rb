@@ -96,13 +96,59 @@ def binary_search(arr, target)
     end
 end
 
-p binary_search([1, 2, 3], 1) # => 0
-p binary_search([2, 3, 4, 5], 3) # => 1
-p binary_search([2, 4, 6, 8, 10], 6) # => 2
-p binary_search([1, 3, 4, 5, 9], 5) # => 3
-p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
-p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
-p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
+# p binary_search([1, 2, 3], 1) # => 0
+# p binary_search([2, 3, 4, 5], 3) # => 1
+# p binary_search([2, 4, 6, 8, 10], 6) # => 2
+# p binary_search([1, 3, 4, 5, 9], 5) # => 3
+# p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
+# p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
+# p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
 
 # [1, 3, 4, 5, 9], 5
 # [1, 3] 4 [5, 9]  # searching idx 2
+
+class Array
+    def merge_sort
+        return [] if self.length == 0 
+        return self if self.length == 1
+
+        middle_index = (self.length - 1) / 2
+
+        arr1 = self[0..middle_index].merge_sort 
+        arr2 = self[middle_index + 1..-1].merge_sort 
+        merge(arr1, arr2)
+
+        
+
+    end 
+
+end 
+    def merge(arr1, arr2)
+            new_array = []
+            arr1.each do |num1|
+                arr2.each do |num2|
+                    if num1 < num2
+                        new_array << num1
+                        break
+                    else 
+                        new_array << num2
+                        
+                    end 
+                end 
+            end 
+        new_array
+    end 
+
+
+
+
+    test_arr =  [1, 5, 8, 2, 9, 4, 8, 7, 9]
+    # p test_arr.merge
+    
+    
+    test1 = [1, 2, 3, 4]
+    test2 = [3, 4, 5, 6]
+    
+    p merge(test1, test2)
+    
+
